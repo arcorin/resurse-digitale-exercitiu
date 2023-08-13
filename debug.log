@@ -1,2 +1,7 @@
 [0813/141854.595:ERROR:settings.cc(266)] Settings version is not 1
 [0813/141854.624:ERROR:crash_report_database_win.cc(426)] unexpected header
+[0813/142136.110:ERROR:crash_report_database_win.cc(426)] unexpected header
+[0813/143212.523:ERROR:crash_report_database_win.cc(426)] unexpected header
+[0813/143219.870:ERROR:crash_report_database_win.cc(426)] unexpected header
+[0813/143553.926:ERROR:settings.cc(266)] Settings version is not 1
+[0813/143553.928:ERROR:crash_report_database_win.cc(426)] unexpected header
