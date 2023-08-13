@@ -1,3 +1,9 @@
 {
-    "liveServer.settings.port": 5501
+    "liveServer.settings.port": 5501,
+    "editor.wordWrap": "on",
+    "terminal.integrated.fontSize": 12,
+    "chat.editor.fontSize": 12,
+    "editor.bracketPairColorization.independentColorPoolPerBracketType": true,
+    "editor.columnSelection": true,
+    "editor.defaultFoldingRangeProvider": "vscode.css-language-features"
 }

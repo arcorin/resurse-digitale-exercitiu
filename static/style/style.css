@@ -8,13 +8,14 @@
   --accent-400: #2f8ded;
 }
 
+/* SCSS Variables */
 /* font */
 @font-face {
   font-family: "Atkinson Hyperlegible";
   font-style: normal;
   font-weight: 400;
   font-display: swap;
-  src: url(static/atkinson-hyperlegible-regular-102a.woff2) format("woff2");
+  src: url("../font/atkinson-hyperlegible-regular-102a.woff2") format("woff2");
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 @font-face {
@@ -22,12 +23,12 @@
   font-style: normal;
   font-weight: 700;
   font-display: swap;
-  src: url(static/atkinson-hyperlegible-bold-102a.woff2https://fonts.gstatic.com/s/atkinsonhyperlegible/v11/9Bt73C1KxNDXMspQ1lPyU89-1h6ONRlW45G8Wbc9dCWP.woff2) format("woff2");
+  src: url("../font/atkinson-hyperlegible-bold-102a.woff2") format("woff2");
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 /* Custom CSS reset */
 html {
-  font-family: "Atkinson Hyperlegible", Inter, Roboto, "Helvetica Neue", "Arial Nova", "Nimbus Sans", Arial, sans-serif;
+  font-family: "Atkinson Hyperlegible", "Inter", "Roboto", "Helvetica Neue", "Arial Nova", "Nimbus Sans", Arial, sans-serif;
   font-size: 16px;
   line-height: 1.25;
   -webkit-text-size-adjust: 100%;
@@ -37,6 +38,15 @@ body {
   background-color: var(--dark-100);
   color: var(--light-800);
   margin: 0;
+}
+
+.ActiveMenu {
+  overflow: hidden;
+}
+@media (min-width: 1100px) {
+  .ActiveMenu {
+    overflow: unset;
+  }
 }
 
 img {
@@ -70,26 +80,68 @@ button, input {
   overflow: visible;
 }
 
+h1 {
+  margin: 0;
+  font-size: 2.25rem;
+  line-height: 1em;
+  font-weight: bold;
+  margin: 0;
+}
+@media (min-width: 1100px) {
+  h1 {
+    font-size: 3.5rem;
+    line-height: 1em;
+    letter-spacing: -0.01em;
+  }
+}
+
 [hidden], .Hidden {
   display: none;
 }
 
-a {
+a, .Link {
   color: var(--light-800);
   text-decoration: underline;
 }
 
-a:hover {
+a:hover, .Link:hover {
   color: var(--accent-400);
 }
 
-a:active {
+a:active, .Link:active {
   color: var(--light-800);
   text-decoration: none;
 }
 
+.Form {
+  display: block;
+}
+
+.Fieldset {
+  display: block;
+  margin: 0;
+  padding: 0;
+  border: none;
+}
+
+.Label {
+  display: block;
+}
+
+.Input {
+  display: block;
+  padding: 0.25rem;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  border: none;
+  font-family: "Atkinson Hyperlegible", "Inter", "Roboto", "Helvetica Neue", "Arial Nova", "Nimbus Sans", Arial, sans-serif;
+  font-size: 1em;
+  line-height: 1.5em;
+}
+
 /* Utility classes */
-.SRonly {
+.SROnly, a#skip, #skip.Link {
   clip: rect(1px, 1px, 1px, 1px);
   -webkit-clip-path: inset(50%);
           clip-path: inset(50%);
@@ -101,19 +153,7 @@ a:active {
   position: absolute;
 }
 
-a#skip {
-  clip: rect(1px, 1px, 1px, 1px);
-  -webkit-clip-path: inset(50%);
-          clip-path: inset(50%);
-  height: 1px;
-  width: 1px;
-  margin: -1px;
-  overflow: hidden;
-  padding: 0;
-  position: absolute;
-}
-
-a#skip:focus {
+a#skip:focus, #skip.Link:focus {
   clip: unset;
   -webkit-clip-path: unset;
           clip-path: unset;
@@ -131,7 +171,6 @@ a#skip:focus {
 }
 
 .Header {
-  position: -webkit-sticky;
   position: sticky;
   top: 0;
   z-index: 10;
@@ -148,6 +187,7 @@ a#skip:focus {
 @media (min-width: 1100px) {
   .HeaderMain {
     display: grid;
+    gap: 1rem;
     grid-template-columns: auto 1fr;
     row-gap: 0;
     -moz-column-gap: 1rem;
@@ -220,6 +260,7 @@ a#skip:focus {
   display: block;
 }
 
+/* Menu Trigger with Hamburger Icon */
 .MenuTrigger {
   display: block;
   width: 3rem;
@@ -236,6 +277,11 @@ a#skip:focus {
   }
 }
 
+.MenuTrigger:hover, .MenuTrigger:active, .ActiveMenu .MenuTrigger {
+  background-color: var(--accent-400);
+  color: var(--light-900);
+}
+
 .MenuTrigger .Icon {
   display: block;
   width: 1.5rem;
@@ -246,9 +292,46 @@ a#skip:focus {
   top: 0.75rem;
 }
 
+.ActiveMenu .MenuTrigger .Icon {
+  padding: 0.625rem 0 0;
+}
+
+.HamburgerBar {
+  display: block;
+  width: 1.5rem;
+  height: 0.1875rem;
+  margin: 0 0 0.1875rem;
+  background-color: var(--light-900);
+  transition: transform 0.5s ease-out, margin 0.5s ease-out;
+}
+
+.HamburgerBar1 {
+  margin-top: 0.25rem;
+}
+
+.ActiveMenu .HamburgerBar1 {
+  position: absolute;
+  transform: rotate(45deg);
+  margin-top: 0;
+}
+
+.ActiveMenu .HamburgerBar2 {
+  position: absolute;
+  transform: rotate(-45deg);
+}
+
+.HamburgerBar3 {
+  margin: 0;
+}
+
+.ActiveMenu .HamburgerBar3 {
+  display: none;
+}
+
+/* Logo */
 .Logo {
   display: block;
-  padding: 0.75rem 0.25rem;
+  padding: 0.25rem 0.25rem;
   font-size: 1.5rem;
   line-height: 1em;
   font-weight: bold;
@@ -263,6 +346,7 @@ a#skip:focus {
   }
 }
 
+/* Login */
 .HeaderLink {
   display: flex;
   flex-direction: row;
@@ -291,6 +375,115 @@ a#skip:focus {
 .HeaderLink .LinkText {
   font-size: 1rem;
   line-height: 1.5em;
+}
+
+/* Main Menu */
+.MainMenu {
+  width: 100%;
+  height: calc(100vh - 5.75rem);
+  overflow-y: auto;
+  transform: translate3d(-100%, 0, 0);
+  transition: transform 0.5s ease-in-out;
+  background: var(--dark-100);
+  border-top: 0.25rem solid var(--accent-400);
+  font-size: 1rem;
+  line-height: 1.5em;
+  position: absolute;
+  top: 5.75rem;
+  box-sizing: border-box;
+}
+@media (min-width: 1100px) {
+  .MainMenu {
+    display: flex;
+    flex-direction: row;
+    order: 4;
+    grid-column: 1/span 3;
+    width: 100%;
+    height: unset;
+    padding: 0;
+    margin-left: auto;
+    overflow: visible;
+    position: static;
+    top: unset;
+    left: unset;
+    transform: none;
+    transition: none;
+    background: transparent;
+    border-top: 1px solid var(--light-900);
+  }
+}
+
+.ActiveMenu .MainMenu {
+  transform: translate3d(0, 0, 0);
+}
+
+.MainMenuList {
+  display: flex;
+  flex-direction: column;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+@media (min-width: 1100px) {
+  .MainMenuList {
+    flex-direction: row;
+  }
+}
+
+.MainMenuItem {
+  display: block;
+}
+
+.MainMenuLink {
+  display: block;
+  padding: 1rem;
+  border-bottom: 1px solid var(--accent-400);
+  font-weight: bold;
+  text-decoration: none;
+  font-size: 1.5rem;
+  line-height: 1em;
+}
+@media (min-width: 1100px) {
+  .MainMenuLink {
+    border: none;
+  }
+}
+
+@media (min-width: 1100px) {
+  .SearchForm {
+    flex-grow: 1;
+  }
+}
+
+@media (min-width: 1100px) {
+  .SearchForm .Fieldset {
+    display: flex;
+    flex: row;
+    justify-content: flex-end;
+  }
+}
+
+.SearchForm .Label {
+  margin: 1rem 1rem 0.5rem;
+}
+@media (min-width: 1100px) {
+  .SearchForm .Label {
+    display: none;
+  }
+}
+
+.InputSearch {
+  margin: 0.5rem 1rem 1rem;
+  width: calc(100% - 2rem);
+}
+@media (min-width: 1100px) {
+  .InputSearch {
+    width: 100%;
+    max-width: 22rem;
+    margin: 0;
+    padding: 1rem;
+    text-align: right;
+  }
 }
 
 /* Breadcrumbs */
@@ -352,11 +545,107 @@ a#skip:focus {
 }
 
 .Hero {
-  min-height: 20rem;
-  background: magenta;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 1rem 1rem 1rem 0.5rem;
+}
+@media (min-width: 600px) {
+  .Hero {
+    max-width: 37.5rem;
+    margin: 0 auto;
+    gap: 1rem;
+    padding: 2rem 1rem 1.5rem;
+  }
+}
+@media (min-width: 1100px) {
+  .Hero {
+    max-width: unset;
+    margin: unset;
+    flex-direction: row;
+    gap: 0;
+    padding: 0;
+  }
 }
 
-/* pe h1 font-size; clamp(1.00rem, calc(0.49rem + 2.56vw), 2.25rem); */
+/* @TODO pe h1 font-size; clamp(1.00rem, calc(0.49rem + 2.56vw), 2.25rem); */
+@media (min-width: 1100px) {
+  .HeroVisual {
+    flex-grow: 1;
+    flex-shrink: 0;
+    width: 37.5%;
+    padding: 2rem;
+    box-sizing: border-box;
+    border-right: 1px solid var(--light-900);
+  }
+}
+
+.HeroImage {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+@media (min-width: 1100px) {
+  .HeroText {
+    padding: 2rem 2rem 1rem;
+  }
+}
+
+.HeroTitle {
+  display: block;
+  padding: 0 0 0.5rem;
+  margin: 0 -1rem 0.5rem 0;
+  border-bottom: 0.25rem solid var(--light-900);
+}
+@media (min-width: 600px) {
+  .HeroTitle {
+    padding: 0 0 1rem;
+    margin: 0 -1rem 1rem 0;
+  }
+}
+@media (min-width: 1100px) {
+  .HeroTitle {
+    padding: 0 0 0.5rem;
+    margin: 0 0 1rem;
+    border-bottom: 0.5rem solid var(--light-900);
+  }
+}
+
+.HeroPreview {
+  display: block;
+}
+
+.HeroPreview:hover {
+  opacity: 0.75;
+  cursor: pointer;
+}
+
+.HeroPreview:active {
+  opacity: 0.95;
+}
+
+.HeroP {
+  margin: 0 0 0.5rem;
+}
+@media (min-width: 600px) {
+  .HeroP {
+    margin: 0 0 1rem;
+  }
+}
+
+.HeroExpand {
+  font-weight: bold;
+}
+
+.HeroPreview:hover .HeroExpand {
+  color: var(--accent-400);
+}
+
+.HeroPreview:active .HeroExpand {
+  color: var(--light-800);
+  text-decoration: none;
+}
+
 .Main {
   min-height: 200rem;
   background: yellow;
