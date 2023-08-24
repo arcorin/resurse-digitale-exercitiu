@@ -57,7 +57,7 @@
 
 </head>
 
-<body class="ActiveMenu">
+<body> <!-- La <body> se adaugă clasa .ActiveMenu cu JS. Această clasă face să apară/dispară meniul .MainMenu -->
     <a id="skip" href="#hero" title="Mergi direct la continutul acestei pagini">Mergi la continut</a>
     <div class="Framework">
         <!-- Header -->
@@ -69,13 +69,13 @@
                     <ul class="LanguagePickerList">
                         <li class="LanguagePickerItem Active" lang="ro">
                             <a class="LanguagePickerLink" href="#" title="Vezi acest website in limba Română">
-                                <icon class="Icon Romanian">🇷🇴</icon>
+                                <icon class="Icon IconRomanian">🇷🇴</icon>
                                 <span class="LinkText">Română</span>
                             </a>
                         </li>
                         <li class="LanguagePickerItem" lang="en">
                             <a class="LanguagePickerLink" href="#" title="See this website in English">
-                                <icon class="Icon English">🇬🇧</icon>
+                                <icon class="Icon IconEnglish">🇬🇧</icon>
                                 <span class="LinkText">English</span>
                             </a>
                         </li>
@@ -83,7 +83,7 @@
                 </nav>
                 <!-- Menu Trigger (Hamburber Menu Icon) -->
                 <button class="MenuTrigger" type="button" id="menuTrigger">
-                    <icon class="Icon Hamburger">
+                    <icon class="Icon IconHamburger">
                         <span class="HamburgerBar HamburgerBar1">&nbsp;</span>
                         <span class="HamburgerBar HamburgerBar2">&nbsp;</span>
                         <span class="HamburgerBar HamburgerBar3">&nbsp;</span>          
@@ -96,7 +96,7 @@
                 </a>
                 <!-- Login -->
                 <a class="HeaderLink Login" href="#" title="Mergi la prima pagina a proiectului">
-                    <icon class="Icon User">👤</icon>
+                    <icon class="Icon IconUser">👤</icon>
                     <span class="LinkText">Login</span>
                 </a>
                 <!-- Main Menu -->
@@ -122,12 +122,12 @@
                                 <span class="LinkText">Marketing</span>
                             </a>
                         </li>
-                        <li class="MainMenuItem Active" lang="ro">
+                        <li class="MainMenuItem" lang="ro">
                             <a class="MainMenuLink" href="#" title="Vezi lista de resurse de Network &amp; Security">
                                 <span class="LinkText">NetSec</span>
                             </a>
                         </li>
-                        <li class="MainMenuItem Active" lang="ro">
+                        <li class="MainMenuItem" lang="ro">
                             <a class="MainMenuLink" href="#" title="Vezi lista de resurse din alte domenii">
                                 <span class="LinkText">Altele</span>
                             </a>
@@ -225,7 +225,431 @@
         </div>
 
         <!-- Main -->
-        <main class="Main"></main>
+        <main class="Main">
+            <form class="SortAndFilter" action="#" method="get">
+                <fieldset class="Fieldset">
+                    <legend class="SROnly">Caută prin lista de resurse curentă:</legend>
+                    <label for="s" class="SROnly">Introdu cuvintele căutate:</label>
+                    <input type="search"  class="Input InputSearch" id="inner-s" name="inner-s" maxlength="200" value="" placeholder="🔍 Caută prin resursele de Front End..." spellcheck="false" autocorrect="off" />
+                    
+                </fieldset>
+                <fieldset class="Fieldset">
+                    <legend class="SROnly">Sortează și filtrează lista de resurse:</legend>
+                    <details class="FilterOptions">
+                        <summary class="FilterTrigger">
+                            <icon class="Icon IconFilter">△</icon>
+                            <span class="ButtonText">Filtrează</span>
+                        </summary>
+                        <ul class="FilterOptionList">
+                            <li class="FilterOptionItem">???? <!-- @TODO gândește-te la ce opțiuni de filtrare sunt viabile în context --></li>
+                        </ul>
+                    </details>
+                    <details class="FilterOptions">
+                        <summary class="FilterTrigger">
+                            <icon class="Icon IconSortDesc">⬇️</icon>
+                            <span class="ButtonText">Sortează</span>
+                        </summary>
+                        <ul class="FilterOptionList">
+                            <li class="FilterOptionItem">
+                                <label for="" class="FilterOptionLabel">
+                                    <input class="FilterOptionRadio" type="radio" name="sort" id="sort-default" value="default" checked="checked" />
+                                    <icon class="Icon IconSortDesc">🔥</icon>
+                                    <span class="FilterOptionText">Sugestia autorului</span>
+                                </label>
+                            </li>
+                            <li class="FilterOptionItem">
+                                <label for="" class="FilterOptionLabel">
+                                    <input class="FilterOptionRadio" type="radio" name="sort" id="sort-rating-desc" value="rating-desc" />
+                                    <icon class="Icon IconSortDesc">⬇️</icon>
+                                    <span class="FilterOptionText">Rating de la mare la mic</span>
+                                </label>
+                            </li>
+                            <li class="FilterOptionItem">
+                                <label for="" class="FilterOptionLabel">
+                                    <input class="FilterOptionRadio" type="radio" name="sort" id="sort-rating-asc"
+                                    value="rating-asc" />
+                                    <icon class="Icon IconSortAsc">⬆️</icon>
+                                    <span class="FilterOptionText">Rating de la mic la mare</span>
+                                </label>
+                            </li>
+                            <li class="FilterOptionItem">
+                                <label for="" class="FilterOptionLabel">
+                                    <input class="FilterOptionRadio" type="radio" name="sort" id="time-rating-desc" value="time-desc" />
+                                    <icon class="Icon IconSortDesc">⬇️</icon>
+                                    <span class="FilterOptionText">Timp necesar de la mare la mic</span>
+                                </label>
+                            </li>
+                            <li class="FilterOptionItem">
+                                <label for="" class="FilterOptionLabel">
+                                    <input class="FilterOptionRadio" type="radio" name="sort" id="tim-rating-asc"
+                                    value="time-asc" />
+                                    <icon class="Icon IconSortAsc">⬆️</icon>
+                                    <span class="FilterOptionText">Timp necesar de la mic la mare</span>
+                                </label>
+                            </li>
+                        </ul>
+                    </details>
+                    <button class="SROnly" type="submit">Caută acum &raquo;</button>
+                </fieldset>
+            </form>
+            <div class="ResourceContainer">
+                <h2 class="ResourceCategory">HTML (HyperText Markup Language)</h2>
+                <h3 class="ResourceSubcategory">Elemente de bază</h3>
+                <ol class="ResourceList">
+                    <li class="ResourceItem">
+                        <div class="ResourceName">
+                            <button class="ResourceStatus" type="button">☑️</button>
+                            <h4 class="ResourceTitle">
+                                <a href="#" class="ResourceLink" title="Vizitează resursa intitulată: Resilient Web Design">Resilient Web Design</a>
+                            </h4>
+                        </div>
+                        <div class="ResourceAside ResourceInfo">
+                            <h5 class="WidgetTitle">Informații utile</h5>
+                            <ul class="InfoList">
+                                <li class="InfoItem">
+                                    <div class="InfoItemLabel">
+                                        <icon class="Icon IconRating">⭐</icon>
+                                        <span class="InfoItemText">Rating-ul link-ului</span>
+                                    </div>
+                                    <strong class="InfoItemValue">4.5 (10)</strong>
+                                </li>
+                                <li class="InfoItem">
+                                    <div class="InfoItemLabel">
+                                        <icon class="Icon IconViews">👀</icon>
+                                        <span class="InfoItemText">Vizualizări</span>
+                                    </div>
+                                    <strong class="InfoItemValue">7895</strong>
+                                </li>
+                                <li class="InfoItem">
+                                    <div class="InfoItemLabel">
+                                        <icon class="Icon IconTime">⏰</icon>
+                                        <span class="InfoItemText">Timp necesar</span>
+                                    </div>
+                                    <strong class="InfoItemValue">80h</strong>
+                                </li>
+                            </ul>
+                        </div>
+                        <details class="ResourceMain">
+                            <summary class="ResourceMainTrigger">
+                                <span class="ButtonText">Vezi detalii despre link</span>
+                                <icon class="Icon IconExpand">⬇️</icon>
+                            </summary>
+                            <div class="ResourceMainContent">
+                                <p class="ResourceP">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+                            </div>
+                            <ul class="ResourceTags">
+                                <li class="ResourceTag Type-Book">
+                                    <a class="ResourceTagLink" href="#" title="Vezi toate resursele care sunt clasificate astfel: carte">
+                                        <span class="Icon IconTag">Tag:</span>
+                                        <span class="TagName">carte</span>
+                                    </a>
+                                </li>
+                                <li class="ResourceTag Type-Text">
+                                    <a class="ResourceTagLink" href="#" title="Vezi toate resursele care sunt clasificate astfel: text">
+                                        <span class="Icon IconTag">Tag:</span>
+                                        <span class="TagName">text</span>
+                                    </a>
+                                </li>
+                                <li class="ResourceTag Price-Free">
+                                    <a class="ResourceTagLink" href="#" title="Vezi toate resursele care sunt clasificate astfel: free">
+                                        <span class="Icon IconTag">Tag:</span>
+                                        <span class="TagName">free</span>
+                                    </a>
+                                </li>                                          
+                                <li class="ResourceTag Level-Beginner">
+                                    <a class="ResourceTagLink" href="#" title="Vezi toate resursele care sunt clasificate astfel: începători">
+                                        <span class="Icon IconTag">Tag:</span>
+                                        <span class="TagName">începători</span>
+                                    </a>
+                                </li>
+                                <li class="ResourceTag Level-Mid">
+                                    <a class="ResourceTagLink" href="#" title="Vezi toate resursele care sunt clasificate astfel: mid">
+                                        <span class="Icon IconTag">Tag:</span>
+                                        <span class="TagName">mid</span>
+                                    </a>
+                                </li>
+                                <li class="ResourceTag Level-Advanced">
+                                    <a class="ResourceTagLink" href="#" title="Vezi toate resursele care sunt clasificate astfel: avansați">
+                                        <span class="Icon IconTag">Tag:</span>
+                                        <span class="TagName">avansați</span>
+                                    </a>
+                                </li> 
+                                <li class="ResourceTag Level-Pro">
+                                    <a class="ResourceTagLink" href="#" title="Vezi toate resursele care sunt clasificate astfel: pro">
+                                        <span class="Icon IconTag">Tag:</span>
+                                        <span class="TagName">pro</span>
+                                    </a>
+                                </li>
+                                <li class="ResourceTag Mandatory">
+                                    <a class="ResourceTagLink" href="#" title="Vezi toate resursele care sunt clasificate astfel: obligatoriu">
+                                        <span class="Icon IconTag">Tag:</span>
+                                        <span class="TagName">obligatoriu</span>
+                                    </a>
+                                </li>
+                            </ul>                               
+                        </details>
+                        <!-- @TODO adaugă comentariile și paginația -->
+                        <aside class="ResourceAside ResourceActions">
+                            <h5 class="WidgetTitle">Acțiuni disponibile</h5>
+                            <ul class="InfoList">
+                                <li class="InfoItem">
+                                    <button class="InfoLink" type="button" title="Share-uiește resursa cu prietenii tăi">
+                                        <icon class="Icon IconShare">🚀</icon>
+                                        <span class="ButtonText">Trimite<span class="DesktopOnlyInLine"> link-ul</span></span>
+                                    </button>
+                                </li>
+                                <li class="InfoItem">
+                                    <button class="InfoLink" type="button" title="Adaugă în lista ta de resurse favotite resursa: Resilient Web Design">
+                                        <icon class="Icon IconLike">❤️</icon>
+                                        <span class="ButtonText">Adaugă<span class="DesktopOnlyInLine"> în listă</span></span>
+                                    </button>
+                                </li>
+                                <li class="InfoItem">
+                                    <button class="InfoLink" type="button" title="Semnalează o problemă cu resursa: Resilient Web Design - link greșit, site hack-uit, proprietăți greșite">
+                                        <icon class="Icon IconReport">⚠</icon>
+                                        <span class="ButtonText">Raportează<span class="DesktopOnlyInLine"> link</span></span>
+                                    </button>
+                                </li>                                
+                            </ul>
+                        </aside>
+                    </li>
+                    <li class="ResourceItem">
+                        <div class="ResourceName">
+                            <button class="ResourceStatus" type="button">☑️</button>
+                            <h4 class="ResourceTitle">
+                                <a href="#" class="ResourceLink" title="Vizitează resursa intitulată: Resilient Web Design">Resilient Web Design</a>
+                            </h4>
+                        </div>
+                        <div class="ResourceAside ResourceInfo">
+                            <h5 class="WidgetTitle">Informații utile</h5>
+                            <ul class="InfoList">
+                                <li class="InfoItem">
+                                    <div class="InfoItemLabel">
+                                        <icon class="Icon IconRating">⭐</icon>
+                                        <span class="InfoItemText">Rating-ul link-ului</span>
+                                    </div>
+                                    <strong class="InfoItemValue">4.5 (10)</strong>
+                                </li>
+                                <li class="InfoItem">
+                                    <div class="InfoItemLabel">
+                                        <icon class="Icon IconViews">👀</icon>
+                                        <span class="InfoItemText">Vizualizări</span>
+                                    </div>
+                                    <strong class="InfoItemValue">7895</strong>
+                                </li>
+                                <li class="InfoItem">
+                                    <div class="InfoItemLabel">
+                                        <icon class="Icon IconTime">⏰</icon>
+                                        <span class="InfoItemText">Timp necesar</span>
+                                    </div>
+                                    <strong class="InfoItemValue">80h</strong>
+                                </li>
+                            </ul>
+                        </div>
+                        <details class="ResourceMain">
+                            <summary class="ResourceMainTrigger">
+                                <span class="ButtonText">Vezi detalii despre link</span>
+                                <icon class="Icon IconExpand">⬇️</icon>
+                            </summary>
+                            <div class="ResourceMainContent">
+                                <p class="ResourceP">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+                            </div>
+                            <ul class="ResourceTags">
+                                <li class="ResourceTag Type-Book">
+                                    <a class="ResourceTagLink" href="#" title="Vezi toate resursele care sunt clasificate astfel: carte">
+                                        <span class="Icon IconTag">Tag:</span>
+                                        <span class="TagName">carte</span>
+                                    </a>
+                                </li>
+                                <li class="ResourceTag Type-Text">
+                                    <a class="ResourceTagLink" href="#" title="Vezi toate resursele care sunt clasificate astfel: text">
+                                        <span class="Icon IconTag">Tag:</span>
+                                        <span class="TagName">text</span>
+                                    </a>
+                                </li>
+                                <li class="ResourceTag Price-Free">
+                                    <a class="ResourceTagLink" href="#" title="Vezi toate resursele care sunt clasificate astfel: free">
+                                        <span class="Icon IconTag">Tag:</span>
+                                        <span class="TagName">free</span>
+                                    </a>
+                                </li>                                          
+                                <li class="ResourceTag Level-Beginner">
+                                    <a class="ResourceTagLink" href="#" title="Vezi toate resursele care sunt clasificate astfel: începători">
+                                        <span class="Icon IconTag">Tag:</span>
+                                        <span class="TagName">începători</span>
+                                    </a>
+                                </li>
+                                <li class="ResourceTag Level-Mid">
+                                    <a class="ResourceTagLink" href="#" title="Vezi toate resursele care sunt clasificate astfel: mid">
+                                        <span class="Icon IconTag">Tag:</span>
+                                        <span class="TagName">mid</span>
+                                    </a>
+                                </li>
+                                <li class="ResourceTag Level-Advanced">
+                                    <a class="ResourceTagLink" href="#" title="Vezi toate resursele care sunt clasificate astfel: avansați">
+                                        <span class="Icon IconTag">Tag:</span>
+                                        <span class="TagName">avansați</span>
+                                    </a>
+                                </li> 
+                                <li class="ResourceTag Level-Pro">
+                                    <a class="ResourceTagLink" href="#" title="Vezi toate resursele care sunt clasificate astfel: pro">
+                                        <span class="Icon IconTag">Tag:</span>
+                                        <span class="TagName">pro</span>
+                                    </a>
+                                </li>
+                                <li class="ResourceTag Mandatory">
+                                    <a class="ResourceTagLink" href="#" title="Vezi toate resursele care sunt clasificate astfel: obligatoriu">
+                                        <span class="Icon IconTag">Tag:</span>
+                                        <span class="TagName">obligatoriu</span>
+                                    </a>
+                                </li>
+                            </ul>                               
+                        </details>
+                        <!-- @TODO adaugă comentariile și paginația -->
+                        <aside class="ResourceAside ResourceActions">
+                            <h5 class="WidgetTitle">Acțiuni disponibile</h5>
+                            <ul class="InfoList">
+                                <li class="InfoItem">
+                                    <button class="InfoLink" type="button" title="Share-uiește resursa cu prietenii tăi">
+                                        <icon class="Icon IconShare">🚀</icon>
+                                        <span class="ButtonText">Trimite<span class="DesktopOnlyInLine"> link-ul</span></span>
+                                    </button>
+                                </li>
+                                <li class="InfoItem">
+                                    <button class="InfoLink" type="button" title="Adaugă în lista ta de resurse favotite resursa: Resilient Web Design">
+                                        <icon class="Icon IconLike">❤️</icon>
+                                        <span class="ButtonText">Adaugă<span class="DesktopOnlyInLine"> în listă</span></span>
+                                    </button>
+                                </li>
+                                <li class="InfoItem">
+                                    <button class="InfoLink" type="button" title="Semnalează o problemă cu resursa: Resilient Web Design - link greșit, site hack-uit, proprietăți greșite">
+                                        <icon class="Icon IconReport">⚠</icon>
+                                        <span class="ButtonText">Raportează<span class="DesktopOnlyInLine"> link</span></span>
+                                    </button>
+                                </li>                                
+                            </ul>
+                        </aside>
+                    </li>
+                    <li class="ResourceItem">
+                        <div class="ResourceName">
+                            <button class="ResourceStatus" type="button">☑️</button>
+                            <h4 class="ResourceTitle">
+                                <a href="#" class="ResourceLink" title="Vizitează resursa intitulată: Resilient Web Design">Resilient Web Design</a>
+                            </h4>
+                        </div>
+                        <div class="ResourceAside ResourceInfo">
+                            <h5 class="WidgetTitle">Informații utile</h5>
+                            <ul class="InfoList">
+                                <li class="InfoItem">
+                                    <div class="InfoItemLabel">
+                                        <icon class="Icon IconRating">⭐</icon>
+                                        <span class="InfoItemText">Rating-ul link-ului</span>
+                                    </div>
+                                    <strong class="InfoItemValue">4.5 (10)</strong>
+                                </li>
+                                <li class="InfoItem">
+                                    <div class="InfoItemLabel">
+                                        <icon class="Icon IconViews">👀</icon>
+                                        <span class="InfoItemText">Vizualizări</span>
+                                    </div>
+                                    <strong class="InfoItemValue">7895</strong>
+                                </li>
+                                <li class="InfoItem">
+                                    <div class="InfoItemLabel">
+                                        <icon class="Icon IconTime">⏰</icon>
+                                        <span class="InfoItemText">Timp necesar</span>
+                                    </div>
+                                    <strong class="InfoItemValue">80h</strong>
+                                </li>
+                            </ul>
+                        </div>
+                        <details class="ResourceMain">
+                            <summary class="ResourceMainTrigger">
+                                <span class="ButtonText">Vezi detalii despre link</span>
+                                <icon class="Icon IconExpand">⬇️</icon>
+                            </summary>
+                            <div class="ResourceMainContent">
+                                <p class="ResourceP">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+                            </div>
+                            <ul class="ResourceTags">
+                                <li class="ResourceTag Type-Book">
+                                    <a class="ResourceTagLink" href="#" title="Vezi toate resursele care sunt clasificate astfel: carte">
+                                        <span class="Icon IconTag">Tag:</span>
+                                        <span class="TagName">carte</span>
+                                    </a>
+                                </li>
+                                <li class="ResourceTag Type-Text">
+                                    <a class="ResourceTagLink" href="#" title="Vezi toate resursele care sunt clasificate astfel: text">
+                                        <span class="Icon IconTag">Tag:</span>
+                                        <span class="TagName">text</span>
+                                    </a>
+                                </li>
+                                <li class="ResourceTag Price-Free">
+                                    <a class="ResourceTagLink" href="#" title="Vezi toate resursele care sunt clasificate astfel: free">
+                                        <span class="Icon IconTag">Tag:</span>
+                                        <span class="TagName">free</span>
+                                    </a>
+                                </li>                                          
+                                <li class="ResourceTag Level-Beginner">
+                                    <a class="ResourceTagLink" href="#" title="Vezi toate resursele care sunt clasificate astfel: începători">
+                                        <span class="Icon IconTag">Tag:</span>
+                                        <span class="TagName">începători</span>
+                                    </a>
+                                </li>
+                                <li class="ResourceTag Level-Mid">
+                                    <a class="ResourceTagLink" href="#" title="Vezi toate resursele care sunt clasificate astfel: mid">
+                                        <span class="Icon IconTag">Tag:</span>
+                                        <span class="TagName">mid</span>
+                                    </a>
+                                </li>
+                                <li class="ResourceTag Level-Advanced">
+                                    <a class="ResourceTagLink" href="#" title="Vezi toate resursele care sunt clasificate astfel: avansați">
+                                        <span class="Icon IconTag">Tag:</span>
+                                        <span class="TagName">avansați</span>
+                                    </a>
+                                </li> 
+                                <li class="ResourceTag Level-Pro">
+                                    <a class="ResourceTagLink" href="#" title="Vezi toate resursele care sunt clasificate astfel: pro">
+                                        <span class="Icon IconTag">Tag:</span>
+                                        <span class="TagName">pro</span>
+                                    </a>
+                                </li>
+                                <li class="ResourceTag Mandatory">
+                                    <a class="ResourceTagLink" href="#" title="Vezi toate resursele care sunt clasificate astfel: obligatoriu">
+                                        <span class="Icon IconTag">Tag:</span>
+                                        <span class="TagName">obligatoriu</span>
+                                    </a>
+                                </li>
+                            </ul>                               
+                        </details>
+                        <!-- @TODO adaugă comentariile și paginația -->
+                        <aside class="ResourceAside ResourceActions">
+                            <h5 class="WidgetTitle">Acțiuni disponibile</h5>
+                            <ul class="InfoList">
+                                <li class="InfoItem">
+                                    <button class="InfoLink" type="button" title="Share-uiește resursa cu prietenii tăi">
+                                        <icon class="Icon IconShare">🚀</icon>
+                                        <span class="ButtonText">Trimite<span class="DesktopOnlyInLine"> link-ul</span></span>
+                                    </button>
+                                </li>
+                                <li class="InfoItem">
+                                    <button class="InfoLink" type="button" title="Adaugă în lista ta de resurse favotite resursa: Resilient Web Design">
+                                        <icon class="Icon IconLike">❤️</icon>
+                                        <span class="ButtonText">Adaugă<span class="DesktopOnlyInLine"> în listă</span></span>
+                                    </button>
+                                </li>
+                                <li class="InfoItem">
+                                    <button class="InfoLink" type="button" title="Semnalează o problemă cu resursa: Resilient Web Design - link greșit, site hack-uit, proprietăți greșite">
+                                        <icon class="Icon IconReport">⚠</icon>
+                                        <span class="ButtonText">Raportează<span class="DesktopOnlyInLine"> link</span></span>
+                                    </button>
+                                </li>                                
+                            </ul>
+                        </aside>
+                    </li>                    
+                </ol>
+            </div>
+        </main>
 
         <!-- Footer -->
         <footer class="Footer"></footer>

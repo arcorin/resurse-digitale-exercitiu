@@ -1,7 +1,8 @@
 :root {
     --dark-100: #030303;
     --dark-200: #222222;
-    --dark-300: #333333;    
+    --dark-300: #333333;
+    --dark-400: #4f4f4f;    
     --light-800: #FDFDFD;
     --light-900: #ffffff;
     --accent-400: #2f8ded;
@@ -33,7 +34,7 @@ $fonts: 'Atkinson Hyperlegible', 'Inter', 'Roboto', 'Helvetica Neue', 'Arial Nov
 /* Custom CSS reset */
 html { font-family: $fonts; font-size: 16px; line-height: 1.25; -webkit-text-size-adjust: 100%; }
 body { background-color: var(--dark-100); color: var(--light-800); margin: 0; }
-.ActiveMenu { overflow: hidden;
+.ActiveMenu { overflow: hidden; 
      @media (min-width: $desktop) { overflow: unset; }
 }
 img { max-width: 100%; border-style: none; } // max-inline-size: 100%; block-size: auto;
@@ -46,7 +47,6 @@ h1 { margin: 0; font-size: 2.25rem; line-height: 1em; font-weight: bold; margin:
     @media (min-width: $desktop) {font-size: 3.5rem; line-height: 1em; letter-spacing: -0.01em; }
 }
 
-[hidden], .Hidden { display: none;}
 a { color: var(--light-800); text-decoration: underline; }
 a:hover { color: var(--accent-400); }
 a:active { color: var(--light-800); text-decoration: none; }
@@ -58,6 +58,10 @@ a:active { color: var(--light-800); text-decoration: none; }
         .Input { display: block; padding: 0.25rem; appearance: none; border: none; font-family: $fonts; font-size: 1em; line-height: 1.5em; }
 
 /* Utility classes */
+[hidden], .Hidden { display: none; }
+.DesktopOnlyInLine { display: none;
+    @media (min-width: $desktop) { display: inline; }
+}
 .SROnly { clip: rect(1px, 1px, 1px, 1px); clip-path: inset(50%); height: 1px; width: 1px; margin: -1px; overflow: hidden; padding: 0; position: absolute; }
 a#skip { @extend .SROnly; }
 a#skip:focus { clip: unset; clip-path: unset; position: static; width: auto; height: auto; }
@@ -68,8 +72,10 @@ a#skip:focus { clip: unset; clip-path: unset; position: static; width: auto; hei
 .Framework { 
     @media(min-width: 1100px) { margin: 1rem; border: 1px solid var(--light-900); }
  }
-    .Header { position: sticky; top: 0; z-index: 10; background: var(--dark-100); }
+    .Header { position: sticky; top: 0; z-index: 10; background: var(--dark-100); transition: top 0.5s ease-in; }
+    .ScrollDown .Header { top: -9rem; }
         /* @TODO: trebuie sa face exclusiv HeaderMain sticky, nu tot parintele Header */
+        /* @TODO: trebuie ca header-ul să devină vizibil doar când se scrollează în sus */
         .HeaderMain { display: flex; flex-direction: row; border-bottom: 1px solid var(--light-900); flex-wrap: wrap;
             @media(min-width: $desktop) { display: grid; gap:1rem; grid-template-columns: auto 1fr; row-gap: 0; column-gap: 1rem; }
         }
@@ -87,7 +93,7 @@ a#skip:focus { clip: unset; clip-path: unset; position: static; width: auto; hei
                             .LinkText { display: block; } 
 
             /* Menu Trigger with Hamburger Icon */
-            .MenuTrigger { display: block; width: 3rem; padding: 0.75rem; position: relative; background: transparent; border: none; text-align: center; cursor: pointer;
+            .MenuTrigger { display: block; width: 3rem; padding: 0.75rem; position: relative; background: transparent; border: none; text-align: center; cursor: pointer; 
                 @media (min-width: $desktop) { display: none; } 
             }
             .MenuTrigger:hover, .MenuTrigger:active, .ActiveMenu /* adaugat cu JS */ .MenuTrigger { background-color: var(--accent-400); color: var(--light-900); }
@@ -154,7 +160,7 @@ a#skip:focus { clip: unset; clip-path: unset; position: static; width: auto; hei
                         .BreadcrumbItem span { display: block; padding: 0.5rem 0; white-space: nowrap;
                             @media (min-width: 1100px) { padding: 1rem 0; }
                         }
-    .Hero { display: flex; flex-direction: column; gap: 0.5rem; padding: 1rem 1rem 1rem 0.5rem; 
+    .Hero { display: flex; flex-direction: column; gap: 0.5rem; padding: 1rem 1rem 1rem 0.5rem; border-bottom: 1px solid var(--light-900);
         @media (min-width: 600px) { max-width: 37.5rem; margin: 0 auto;gap: 1rem; padding: 2rem 1rem 1.5rem; }
         @media (min-width: $desktop) { max-width: unset; margin: unset; flex-direction: row; gap: 0; padding: 0; }
     }
@@ -186,8 +192,105 @@ a#skip:focus { clip: unset; clip-path: unset; position: static; width: auto; hei
                 .HeroContent {  }
                     .HeroContent .HeroP {  }
                     
+    /* Main */
+    .Main { display: block; margin: 1rem; border: 1px solid var(--light-900); }
+        /* Sort and Filter */
+        .SortAndFilter { display: flex; flex-direction: column; position: sticky; top: 8.3125rem; transition: top 0.25s ease-in; } 
+        .ScrollDown .SortAndFilter { top: 0; }
+            .SortAndFilter .Fieldset { display: flex; flex-direction: row; min-inline-size: unset; position: relative; border-bottom: 1px solid var(--dark-100); }
+                .SortAndFilter .Label {  }
+                .SortAndFilter .InputSearch { width: 100%; margin: 0; padding: 0.5rem 1rem; }
+            .FilterOptions { flex-grow: 1; background: var(--dark-100); border-bottom: 1px solid var(--light-900); cursor: pointer; }
+            .FilterOptions:first-of-type { border-right: 1px solid var(--light-900); }
+                .FilterTrigger {  display: flex; flex-direction: row; justify-content: center; gap: 0.5rem; padding: 0.25rem; font-size: 1rem; line-height: 1.5em; user-select: none; }
+                .FilterTrigger:hover { background: var(--accent-400); color: var(--light-900); }
+                .FilterTrigger:active .FilterOptions[open] .FilterTrigger { background: var(--light-900); color: var(--dark-200); }
+                    .FilterTrigger .Icon { display: block; width: 1.5rem; height: 1.5rem; text-align: center; line-height: 1.5rem; }
+                    .FilterTrigger .ButtonText {  }
+                .FilterOptionList { display: block; list-style-type: none; margin: 0; padding: 0; position: absolute; left: 0; top: 2.5rem; right: 0; background: var(--light-900); color: var(--dark-300); }
+                    .FilterOptionItem {  }
+                        .FilterOptionLabel { display: flex; flex-direction: row; gap: 0.5rem; padding: 0.5rem; cursor: pointer; user-select: none; font-size: 1rem; line-height: 1.5rem; }
+                        .FilterOptionLabel:hover { background: var(--accent-400); color: var(--light-900); }
+                        .FilterOptionLabel:active { background: var(--light-900); color: var(--dark-100); }
+                            .FilterOptionRadio {  }
+                            .FilterOptionLabel .Icon { width: 1.5rem; height: 1.5rem; text-align: center; line-height: 1.5rem; }
+                            .FilterOptionText {  }
+        /* Resource */  
+        .ResourceContainer {  }                
+            .ResourceCategory { display: block; margin: 0; padding: 0.5rem; border-bottom: 1px solid var(--light-900); font-size: 1.5rem; line-height: 1em; font-weight: bold; 
+                @media (min-width: $desktop) {font-size: 3rem; line-height: 1em; } 
+            }
+            .ResourceSubcategory { display: block; margin: 0; padding: 0.5rem; border-bottom: 1px solid var(--light-900); font-size: 1rem; line-height: 1em; font-weight: normal; color: var(--accent-400); 
+                @media (min-width: $desktop) {font-size: 3rem; line-height: 2.5rem; }
+            }
+            .ResourceList { display: block; list-style-type: none; margin: 0; padding: 0; }
+                .ResourceItem { display: block; border-bottom: 1px solid var(--light-900); }
+                    .ResourceName { display: flex; flex-direction: row; gap: 0.25rem; padding: 0.5rem 1rem; }
+                        .ResourceStatus { display: block; margin: 0; padding: 0; appearance: none; background: transparent; border: none; }
+                        .ResourceTitle { display: block; margin: 0; }
+                            .ResourceLink { display: block; font-size: 1.25rem; line-height: 1.5rem; font-weight: bold; }
+                    .ResourceAside { display: block; }
+                    .ResourceInfo { display: block; border-top: 1px solid var(--dark-300); border-bottom: 1px solic var(--dark-300); }
+                    .ResourceActions { display: none; }
+                    .ResourceMain[open] + .ResourceActions { display: block; }
+                        .WidgetTitle { display: none; margin: 0; padding: 0; font-size: 1rem; line-height: 1.5rem; color: var(--dark-400);
+                            @media (min-width: $desktop) { display: block; }
+                        }
+                        .InfoList { display: flex; flex-direction: row; justify-content: stretch; list-style-type: none; margin: 0; padding: 0; }
+                            .InfoItem { display: block; flex-grow: 1; padding:0.25rem 0.5rem; }
+                                .InfoItemLabel {  }
+                                    .InfoItemLabel .Icon {  }
+                                    .InfoItemText { display: none;
+                                        @media (min-width: $desktop) { display: block; }
+                                    }
+                                .InfoItemValue { font-weight: normal;}
+                                .InfoLink { display: block; margin: 0; padding: 0; border: none; background: transparent; color: var(--light-800); text-decoration: underline; cursor: pointer; }
+                                .InfoLink:hover { color: var(--accent-400); text-decoration: none; }
+                                .InfoLink:active { color: var(--dark-400); text-decoration: none; }
+                                    .InfoLink .Icon {  }
+                                    .InfoLink .ButtonText {  }
+                                    .DesktopOnlyInLine {  }
+                    
+                    .ResourceMain { display: block; }
+                    .ResourceMain[open], .ResourceMain[open]+.ResourceActions { background: var(--dark-300); }
+                        .ResourceMainTrigger { display: flex; flex-direction: row; gap: 0.25rem; padding: 0.5rem; border-bottom: 1px solid var(--dark-300); cursor: pointer; }
+                        .ResourceMainTrigger:hover { background: var(--accent-400); color: var(--light-900); }
+                        .ResourceMainTrigger:active { background: var(--light-900); color: var(--dark-200); }
+                            .ResourceMainTrigger .ButtonText {  }
+                            .ResourceMainTrigger .Icon {  }
+                        .ResourceMainContent { display: block; }
+                            .ResourceP { display: block; margin: 0; padding: 0.5rem; }
+                            .ResourceTags { display: flex; flex-direction: row; flex-wrap: wrap; gap: 0.5rem; list-style-type: none; margin: 0; padding: 0 0.5rem; }
+								.ResourceTag { display: block; }
+                                	.ResourceTagLink { display: flex; flex-direction: row; gap: 0.25rem; padding: 0.25rem; background: var(--dark-200); color: var(--light-900); border: 1px solid var(--light-900); font-size: 1rem; line-height: 1.25rem; text-decoration: none;}
+                                	.ResourceTagLink:hover { background: var(--dark-100); color: var(--accent-400); border: 1px solid var(--accent-400); }
+                                	.ResourceTagLink:active { background: var(--accent-400); color: var(--light-900); border: 1px solid var(--light-900); }
+                                    	.ResourceTag .Icon { display: block; width: 0.75rem; height: 0.75rem; margin: 0.25rem; border-radius: 50%; background: var(--dark-400); text-indent: 100%; overflow: hidden; white-space: nowrap; }
+                                        	.Type-Book .Icon { background: #f2c94c; }
+                                        	.Type-Text .Icon { background: #e2b93c; }
+                                        	.Type-Course .Icon { background: #2fc; }
+                                        	.Type-Video .Icon { background: #2fc; }
+                                        	.Price-Free .Icon { background: #219653; }
+                                        	.Price-Paid .Icon { background: #2fc; }
+                                        	.Level-Beginner .Icon { background: #6fcf97; }
+                                        	.Level-Mid .Icon { background: #2d9cdb; }
+                                        	.Level-Advanced .Icon { background: #bb6bd9; }
+                                        	.Level-Pro .Icon { background: #eb5757; }
+                                        	.Mandatory .Icon { background: #f2994a; }
+                                	.TagName {  }
 
-    .Main { min-height: 200rem; background: yellow; }
-    .Footer { min-height: 2rem; background: blue; }
+                                    
+                                    .TagName {  }
+
+
+    /* Footer */
+    .Footer { min-height: 2rem; }
+
+    /* BottomNav */
     .BottomNav {  }
+
+    /*
+    @TODO SVG icons
+    @TODO Editeaza meta header-ul din index.html
+    */
 
