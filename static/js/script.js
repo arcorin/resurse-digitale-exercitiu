@@ -8,6 +8,7 @@ menuTrigger.addEventListener('click', function (event) {
 });
 
 const filterOptions = document.getElementsByClassName('FilterOptions');
+// @TODO MUST asigură-te că funcționalitatea asta se aplică doar la rezoluții peste 600px
 // Parcurgem fiecare buton cu clasa FilterOptions și adăugăm pe el un eveniment de click
 for (let i = 0; i < filterOptions.length; i++) {
     filterOptions[i].addEventListener('click', function (event) {
@@ -19,6 +20,60 @@ for (let i = 0; i < filterOptions.length; i++) {
         return true;
     });
 }
+
+// console.log(window.innerWidth);
+/* 
+if (window.innerWidth > 600) {
+    const resources = document.getElementsByClassName('ResourceMainTrigger');
+    // Parcurgem fiecare buton din resurse și adăugăm pe el un eveniment de click
+    for (let i = 0; i < resources.length; i++) {
+        if (window.innerWidth > 750) {
+            // dacă se depășește  750px lățime, atunci deschide toate detaliile și ignoră evenimentul de click
+            resources[i].parentElement.setAttribute('open', 'open');
+        } 
+*/
+        
+            /* else {
+            resources[i].addEventListener('click', function (event) {
+                // La fiecare click, vedem dacă există butoane care au deja proprietatea 'open'
+                const alreadyOpen = document.querySelector('.ResourceMain[open]');
+                // Dacă există astfel de butoane și ele sunt diferite de cea pe al cărei buton am dat click acum, trebuie scos atributul 'open' de pe ele ca să nu se suprapună
+                if (alreadyOpen != null && alreadyOpen != resources[i].parentElement)
+                    alreadyOpen.removeAttribute('open');
+                return true;
+            });
+        } */
+/*
+    }
+}
+*/
+
+// definim media query-ul care delimitează rezoluția deasupra căreia vrem să afișăm detaliile fără collapse/expand
+const mql = window.matchMedia("(min-width: 750px)");
+
+showFullProducts(mql.matches);
+// la fiecare modificare a window-ului..
+mql.addEventListener("change", (event) => {
+    // rulăm funcția care schimbă atributele de open când se schimbă valoarea de adevăr a match-ului de media query
+    console.log(event.matches);
+    showFullProducts(event.matches);
+});
+function showFullProducts(isDesktop) {
+    const resources = document.getElementsByClassName('ResourceMain');
+    // dacă booleanul e truthish
+    if (isDesktop) {
+        // păstrăm atributul open peste tot
+        for (let i = 0; i < resources.length; i++) {
+            resources[i].setAttribute('open', '');
+        }
+    } else {
+        // altfel, îl scoatem
+        for (let i = 0; i < resources.length; i++) {
+            resources[i].removeAttribute('open');
+        }
+    }
+}
+
 
 let lastScrollTop = 0;
 // element should be replaced with the actual target element on which you have applied scroll, use window in case of no target element.
