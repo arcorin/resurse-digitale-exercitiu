@@ -11,3 +11,11 @@
 [0830/111951.053:ERROR:crash_report_database_win.cc(426)] unexpected header
 [0830/115122.064:ERROR:crash_report_database_win.cc(426)] unexpected header
 [0830/115127.866:ERROR:crash_report_database_win.cc(426)] unexpected header
+[0830/121701.273:ERROR:settings.cc(266)] Settings version is not 1
+[0830/121701.275:ERROR:crash_report_database_win.cc(426)] unexpected header
+[0830/121707.607:ERROR:crash_report_database_win.cc(426)] unexpected header
+[0830/121850.979:ERROR:crash_report_database_win.cc(426)] unexpected header
+[0907/212206.347:ERROR:crash_report_database_win.cc(426)] unexpected header
+[0907/213312.620:ERROR:crash_report_database_win.cc(426)] unexpected header
+[0907/222048.490:ERROR:crash_report_database_win.cc(426)] unexpected header
+[0907/224311.332:ERROR:crash_report_database_win.cc(426)] unexpected header
